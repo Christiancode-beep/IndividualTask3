@@ -1,0 +1,132 @@
+﻿@model IndividualTask3.Models.CustomerField
+
+@{
+    ViewData["Title"] = "Customer Fields Details";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/style.css">
+    <style>
+        /* General body styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden; /* Prevent extra scroll bar on body */
+        }
+
+        /* Center the container and allow scrolling when content overflows */
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            overflow-y: auto; /* Only allow vertical scroll */
+            max-height: 100vh; /* Make sure content fits the screen */
+            margin-bottom: 20px; /* Prevent container from touching the bottom of the page */
+        }
+
+        /* General text styling */
+        h1, h3, h4 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Information Section */
+        .info-section {
+            margin-bottom: 20px;
+        }
+
+        ul {
+            padding-left: 20px;
+            list-style-type: disc;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Ensures button stays at the bottom of the page */
+        footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>@ViewData["Title"]</h1>
+
+        <!-- Customer Information -->
+        <div class="info-section">
+            <h3>Customer Information</h3>
+            <p><strong>Account Number:</strong> @Model.AccountNumber</p>
+            <p><strong>Industry:</strong> @Model.Industry</p>
+        </div>
+
+        <!-- Fields and Input Form -->
+        <h4>Provide Values for Fields</h4>
+        <form method="post" action="@Url.Action("SubmitFields", "CustomerFields")">
+            @foreach (var field in Model.Fields)
+            {
+                <div class="form-group">
+                    <label for="@field">@field</label>
+                    <input type="text"
+                           id="@field"
+                           name="@field"
+                           class="form-control"
+                           placeholder="Enter value for @field"
+                           required />
+                </div>
+            }
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

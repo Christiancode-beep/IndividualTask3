@@ -1,0 +1,71 @@
+﻿@model Dictionary<string, string>
+
+@{
+    ViewData["Title"] = "Submission Successful";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .success-message {
+            text-align: center;
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: green;
+        }
+        .field-list {
+            margin-top: 20px;
+        }
+        .field-list p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>@ViewData["Title"]</h1>
+
+        <div class="success-message">
+            <p>@ViewBag.SuccessMessage</p>
+        </div>
+
+        <div class="field-list">
+            <h3>Submitted Fields:</h3>
+            @foreach (var field in Model)
+            {
+                <p><strong>@field.Key:</strong> @field.Value</p>
+            }
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="@Url.Action("Index", "CustomerFields")" class="btn">Go Back</a>
+        </div>
+    </div>
+
+</body>
+</html>
